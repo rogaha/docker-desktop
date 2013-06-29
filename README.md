@@ -14,9 +14,9 @@ container such as Firefox, LibreOffice, xterm, etc.
 Fluxbox and ROX-Filer creates a very minimalist way to 
 manages the windows and files.
 
-OBS: The client machine needs to have a X11 server installed. See the "Notes" below. 
-
 ![Docker L](image/docker-desktop.png "Docker-Desktop")
+
+OBS: The client machine needs to have a X11 server installed. See the "Notes" below. 
 
 ##Installation
 
@@ -30,10 +30,10 @@ $ docker build -t [username]/docker-desktop git://github.com/rogaha/docker-deskt
 ###Running the docker image created (-d: detached mode)
 
 ```
-$ CONTAINER_ID=$(docker run -d robertohashioka/docker-xephry-ssh-v2)
+$ CONTAINER_ID=$(docker run -d [username]/docker-desktop)
 ```
 
-###Getting the external ssh port of the new running container 
+###Getting the container's external ssh port 
 
 ```
 $ docker port $CONTAINER_ID 22
@@ -50,23 +50,25 @@ inet addr:192.168.56.102  Bcast:192.168.56.255  Mask:255.255.255.0 # This is the
 
 $ ssh -YC -c blowfish docker@192.168.56.102 -p 49153 # Here is where we use the external port
 docker@192.168.56.102's password: docker # The Desktop should open up automatically after you type the password
+
+-Y = Trusted X11 Forwarding
+-C = Use compression 
+-c blowfish = It should be the fastest compression type
 ```
 
 ##Notes
 
 ###On Windows:
 Requirements:
-- Xming (http://sourceforge.net/project/downloading.php?group_id=156984&filename=Xming-6-9-0-31-setup.exe)
-- Putty (http://the.earth.li/~sgtatham/putty/latest/x86/putty.exe)
+- Xming (http://sourceforge.net/projects/xming/)
+- Putty (http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
 - Configuration Tutorial (https://wiki.utdallas.edu/wiki/display/FAQ/X11+Forwarding+using+Xming+and+PuTTY)
-	- Set the X Display location as localhost:10
-	- Starts the Xming using the display number as 10
 
 ###On OS X:
 Requirements:
-- XQuartz (http://xquartz.macosforge.org/downloads/SL/XQuartz-2.7.4.dmg)
+- XQuartz (http://xquartz.macosforge.org/landing/)
 
-OBS: Currently there is a bug on XQuartz. The keyboard gets messed up when Xephyr tries to configure the X11 server's keyboard.
+OBS: Currently there is a bug on XQuartz. The keyboard gets messed up when Xephyr tries to configure the X11-server's keyboard.
 
 ###On Linux:
 There is no requiment. If you have a Linux Desktop you should have X11 server installed already.
