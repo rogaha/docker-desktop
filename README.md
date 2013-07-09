@@ -1,6 +1,12 @@
 DOCKER-DESKTOP
 ==============
 
+##Next Version Coming Soon
+
+1) Xpra (http://en.wikipedia.org/wiki/Xpra) instead of Xephyr+fluxbox. It will allow disconnection and reconnection without disrupting the forwarded application, self-tuning and latency-insensitive.
+
+2) The password will be generated during runtime using PWGen (http://sourceforge.net/p/pwgen-win/wiki/Home/). It's a password generator capable of creating large amounts of cryptographically-secure passwords.
+
 ##Description
 
 This Dockerfile creates a docker image and once it's executed it creates a container that runs X11 and SSH services.
