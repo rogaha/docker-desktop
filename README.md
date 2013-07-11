@@ -1,28 +1,44 @@
 DOCKER-DESKTOP
 ==============
 
-##Next Version Coming Soon
-
-1) Xpra (http://en.wikipedia.org/wiki/Xpra) instead of Xephyr+fluxbox. It will allow disconnection and reconnection without disrupting the forwarded application, self-tuning and latency-insensitive.
-
-2) The password will be generated during runtime using PWGen (http://sourceforge.net/p/pwgen-win/wiki/Home/). It's a password generator capable of creating large amounts of cryptographically-secure passwords.
-
 ##Description
 
 This Dockerfile creates a docker image and once it's executed it creates a container that runs X11 and SSH services.
-The ssh is used to forward X11 and provide you encrypted data
-communication between the docker container and your local 
-machine.
+The ssh is used to forward X11 and provide you encrypted data communication between the docker container and your local machine.
 
-Xephyr allows to display the programs running inside of the
-container such as Firefox, LibreOffice, xterm, etc. 
+Xpra allows to display the applications running inside of the container such as Firefox, LibreOffice, xterm, etc. with recovery connection capabilities.
 
-Fluxbox and ROX-Filer creates a very minimalist way to 
-manages the windows and files.
+The applications are rootless, so the client machine manages the windows that are displayed.
+
+ROX-Filer creates a very minimalist way to manage the files and icons on the desktop. 
+
 
 ![Docker L](image/docker-desktop.png "Docker-Desktop")
 
 OBS: The client machine needs to have a X11 server installed. See the "Notes" below. 
+
+##Docker Installation
+
+###On Linux:
+Docker is available as a Ubuntu PPA (Personal Package Archive), hosted on launchpad which makes installing Docker on Ubuntu very easy.
+
+```
+#Add the PPA sources to your apt sources list.
+sudo apt-get install python-software-properties && sudo add-apt-repository ppa:dotcloud/lxc-docker
+ 
+# Update your sources
+sudo apt-get update
+ 
+# Install, you will see another warning that the package cannot be authenticated. Confirm install.
+sudo apt-get install lxc-docker
+```
+###On Windows:
+Requirements:
+- Installation Tutorial (http://docs.docker.io/en/latest/installation/windows/)
+
+###On Mac OS X:
+Requirements:
+- Installation Tutorial (http://docs.docker.io/en/latest/installation/vagrant/)
 
 ##Installation
 
@@ -39,6 +55,16 @@ $ docker build -t [username]/docker-desktop git://github.com/rogaha/docker-deskt
 $ CONTAINER_ID=$(docker run -d [username]/docker-desktop)
 ```
 
+###Getting the password generated during runtime
+
+```
+$ echo $(docker logs $CONTAINER_ID | sed -n 1p)
+User: docker Password: xxxxxxxxxxxx
+# where xxxxxxxxxxxx is the password created by PWGen that contains at least one capital letter and one number
+```
+
+##Usage
+
 ###Getting the container's external ssh port 
 
 ```
@@ -46,20 +72,18 @@ $ docker port $CONTAINER_ID 22
 49153 # This is the external port that forwards to the ssh service running inside of the container as port 22
 ```
 
-##Usage
-
 ###Connecting to the container 
 
 ```
 $ ifconfig | grep "inet addr:" 
 inet addr:192.168.56.102  Bcast:192.168.56.255  Mask:255.255.255.0 # This is the LAN's IP for this machine
 
-$ ssh -YC -c blowfish docker@192.168.56.102 -p 49153 # Here is where we use the external port
-docker@192.168.56.102's password: docker # The Desktop should open up automatically after you type the password
+$ ssh -YC -c blowfish docker@192.168.56.102 -p 49153 ./docker-desktop # Here is where we use the external port
+docker@192.168.56.102's password: xxxxxxxxxxxx # The Desktop should open up automatically after you type the password
 
 -Y = Trusted X11 Forwarding
 -C = Use compression 
--c blowfish = It should be the fastest compression type
+-c blowfish = It's one of the fastest compression type available
 ```
 
 ##Notes
@@ -73,8 +97,6 @@ Requirements:
 ###On OS X:
 Requirements:
 - XQuartz (http://xquartz.macosforge.org/landing/)
-
-OBS: Currently there is a bug on XQuartz. The keyboard gets messed up when Xephyr tries to configure the X11-server's keyboard.
 
 ###On Linux:
 There is no requiment. If you have a Linux Desktop you should have X11 server installed already.
