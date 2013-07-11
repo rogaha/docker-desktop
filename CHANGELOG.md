@@ -3,7 +3,7 @@
 ## 0.2.0 (2013-07-10)
  + Funcionality: Allow user's disconnection and reconnection without disrupting the session and its application's status  
  + Funcionality: Applications are rootless (It appears on your desktop as normal windows managed by your window manager)
- + Funcionality: A new password is generated every time that a new container created
+ + Funcionality: A new password is generated every time that a new container is created
  * X Screen: Xpra instead of Xephyr 
  - X Window Manager: Remove Fluxbox
  - Applications: Fix the locale warning messages
