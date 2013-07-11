@@ -3,7 +3,8 @@
 ## 0.2.0 (2013-07-10)
  + Funcionality: Allow user's disconnection and reconnection without disrupting the session and its application's status  
  + Funcionality: Applications are rootless (It appears on your desktop as normal windows managed by your window manager)
- * X Screen: Use Xpra instead of Xephyr 
+ + Funcionality: A new password is generated every time that a new container created
+ * X Screen: Xpra instead of Xephyr 
  - X Window Manager: Remove Fluxbox
  - Applications: Fix the locale warning messages
  - Applications: Fix the error javaldx: Could not find a Java Runtime Environment! from Libreoffice
