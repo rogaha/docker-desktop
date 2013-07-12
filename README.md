@@ -85,6 +85,9 @@ docker@192.168.56.102's password: xxxxxxxxxxxx # The Desktop should open up auto
 -C = Use compression 
 -c blowfish = It's one of the fastest compression type available
 ```
+Once you establish the connection, the file /home/docker/docker-desktop is executed. It takes care of attaching to the previous session or creating a new one, if it doesn’t exist.
+
+If you are connecting from a Windows Machine, you can use Putty. Please check the Notes below, there is a tutorial showing how to do it after following the tutorial, make sure to go to Putty->Connection->SSH and set the Remote command as ./docker-desktop. Once connected to the container through ssh, the desktop will appear and you can enjoy using Firefox and LibreOffice remotely and safely.
 
 ##Notes
 
