@@ -25,3 +25,6 @@ chown -R docker:docker /home/docker/*
 
 # Start the ssh service
 /usr/sbin/sshd -D
+
+# Start Dropbox
+~/.dropbox-dist/dropboxd
