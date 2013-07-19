@@ -13,12 +13,11 @@
 # Fluxbox and ROX-Filer creates a very minimalist way to 
 # manages the windows and files.
 #
-# Author: Roberto Gandolfo Hashioka
+# Original Author: Roberto Gandolfo Hashioka
 # Date: 07/18/2013
 
 
 FROM ubuntu:12.10
-MAINTAINER Roberto G. Hashioka "roberto_hashioka@hotmail.com"
 
 RUN apt-get update
 
@@ -49,6 +48,16 @@ RUN apt-get -y install fuse
 # Installing the apps: Firefox, flash player plugin, LibreOffice and xterm
 # libreoffice-base installs libreoffice-java mentioned before
 RUN apt-get install -y libreoffice-base firefox libreoffice-gtk libreoffice-calc xterm ubuntu-restricted-extras 
+
+# Install Dropbox
+RUN cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
+
+# Install Ruby
+RUN \curl -L https://get.rvm.io | bash -s stable --ruby=1.9.3
+
+#Install Jekyll
+RUN gem install jekyll
+RUN gem install bundler
 
 # Set locale (fix the locale warnings)
 RUN localedef -v -c -i en_US -f UTF-8 en_US.UTF-8 || :
