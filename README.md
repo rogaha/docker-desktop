@@ -6,11 +6,11 @@ DOCKER-DESKTOP
 This Dockerfile creates a docker image and once it's executed it creates a container that runs X11 and SSH services.
 The ssh is used to forward X11 and provide you encrypted data communication between the docker container and your local machine.
 
-Xpra allows to display the applications running inside of the container such as Firefox, LibreOffice, xterm, etc. with recovery connection capabilities.
+Xpra + Xephyr allows to display the applications running inside of the container such as Firefox, LibreOffice, xterm, etc. with recovery connection capabilities.
 
-The applications are rootless, so the client machine manages the windows that are displayed.
+The applications can be rootless, so the client machine manages the windows that are displayed.
 
-ROX-Filer creates a very minimalist way to manage the files and icons on the desktop. 
+Fluxbox and ROX-Filer creates a very minimalist way to manages the windows and files. 
 
 
 ![Docker L](image/docker-desktop.png "Docker-Desktop")
