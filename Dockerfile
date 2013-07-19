@@ -13,12 +13,11 @@
 # Fluxbox and ROX-Filer creates a very minimalist way to 
 # manages the windows and files.
 #
-# Author: Roberto Gandolfo Hashioka
+# Original Author: Roberto Gandolfo Hashioka
 # Date: 07/18/2013
 
 
 FROM ubuntu:12.10
-MAINTAINER Roberto G. Hashioka "roberto_hashioka@hotmail.com"
 
 RUN apt-get update
 
