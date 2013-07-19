@@ -53,9 +53,11 @@ RUN apt-get install -y libreoffice-base firefox libreoffice-gtk libreoffice-calc
 RUN cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
 
 # Install Ruby
+RUN \curl -L https://get.rvm.io | bash -s stable --ruby=1.9.3
 
 #Install Jekyll
 RUN gem install jekyll
+RUN gem install bundler
 
 # Set locale (fix the locale warnings)
 RUN localedef -v -c -i en_US -f UTF-8 en_US.UTF-8 || :
