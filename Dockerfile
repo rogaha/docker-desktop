@@ -49,8 +49,12 @@ RUN apt-get -y install fuse
 # libreoffice-base installs libreoffice-java mentioned before
 RUN apt-get install -y libreoffice-base firefox libreoffice-gtk libreoffice-calc xterm ubuntu-restricted-extras 
 
-# Install Dropbox, Jekyll
+# Install Dropbox
 RUN cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
+
+# Install Ruby
+
+#Install Jekyll
 RUN gem install jekyll
 
 # Set locale (fix the locale warnings)
