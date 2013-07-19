@@ -20,5 +20,8 @@ cd /src; tar -C /home/docker -xvf config.tar
 #Set all the files and subdirectories from /home/docker with docker permissions. 
 chown -R docker:docker /home/docker/*
 
+# restarts the xdm service
+/etc/init.d/xdm restart
+
 # Start the ssh service
 /usr/sbin/sshd -D

@@ -15,7 +15,7 @@ ROX-Filer creates a very minimalist way to manage the files and icons on the des
 
 ![Docker L](image/docker-desktop.png "Docker-Desktop")
 
-OBS: The client machine needs to have a X11 server installed. See the "Notes" below. 
+OBS: The client machine needs to have a X11 server installed (Xpra). See the "Notes" below. 
 
 ##Docker Installation
 
@@ -74,16 +74,25 @@ $ docker port $CONTAINER_ID 22
 
 ###Connecting to the container 
 
+####Starting the a new session 
+
 ```
 $ ifconfig | grep "inet addr:" 
 inet addr:192.168.56.102  Bcast:192.168.56.255  Mask:255.255.255.0 # This is the LAN's IP for this machine
 
-$ ssh -YC -c blowfish docker@192.168.56.102 -p 49153 ./docker-desktop # Here is where we use the external port
-docker@192.168.56.102's password: xxxxxxxxxxxx # The Desktop should open up automatically after you type the password
+$ ssh docker@192.168.56.102 -p 49153 ./docker-desktop -s 800x600 -d 10 # Here is where we use the external port
+docker@192.168.56.102's password: xxxxxxxxxxxx 
 
--Y = Trusted X11 Forwarding
--C = Use compression 
--c blowfish = It's one of the fastest compression type available
+-s = Screen Resolution
+-d = Session Number
+```
+
+####Attaching to the session started
+
+```
+$ xpra --ssh="ssh -p 49153" attach ssh:docker@192.168.56.102:10 # user@ip_address:session_number
+docker@192.168.56.102's password: xxxxxxxxxxxx 
+
 ```
 Once you establish the connection, the file /home/docker/docker-desktop is executed. It takes care of attaching to the previous session or creating a new one, if it doesn’t exist.
 
@@ -93,13 +102,15 @@ If you are connecting from a Windows Machine, you can use Putty. Please check th
 
 ###On Windows:
 Requirements:
-- Xming (http://sourceforge.net/projects/xming/)
-- Putty (http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
-- Configuration Tutorial (https://wiki.utdallas.edu/wiki/display/FAQ/X11+Forwarding+using+Xming+and+PuTTY)
+- Xpra (https://www.xpra.org/dists/windows/)
+- Path: C:\Program Files(x86)\Xpra\Xpra_cmd.exe
 
 ###On OS X:
 Requirements:
-- XQuartz (http://xquartz.macosforge.org/landing/)
+- Xpra (https://www.xpra.org/dists/osx/x86/)
+- Path: /Applications/Xpra.app/Contents/Helpers/xpra
 
 ###On Linux:
-There is no requiment. If you have a Linux Desktop you should have X11 server installed already.
+Requirements:
+- Xpra: You can use apt-get to install it -> apt-get install xpra
+- Path: /usr/bin/xpra

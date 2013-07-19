@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.0 (2013-07-18)
+ + Funcionality: Allow users to configure the screen resolution 
+ + Funcionality: Allow users to create multi-sessions 
+ * X Screen: Xpra + Xephyr 
+ + X Window Manager: Fluxbox
+
 ## 0.2.0 (2013-07-10)
  + Funcionality: Allow user's disconnection and reconnection without disrupting the session and its application's status  
  + Funcionality: Applications are rootless (It appears on your desktop as normal windows managed by your window manager)

@@ -7,14 +7,14 @@
 # container such as Firefox, LibreOffice, xterm, etc. 
 # with disconnection and reconnection capabilities
 #
-# The applications are rootless, therefore the client machine 
-# manages the windows displayed.
-# 
-# ROX-Filer creates a very minimalist way to manage 
-# files and icons on the desktop. 
+# Xephyr allows to display the programs running inside of the
+# container such as Firefox, LibreOffice, xterm, etc. 
+#
+# Fluxbox and ROX-Filer creates a very minimalist way to 
+# manages the windows and files.
 #
 # Author: Roberto Gandolfo Hashioka
-# Date: 07/10/2013
+# Date: 07/18/2013
 
 
 FROM ubuntu:12.10
@@ -26,7 +26,13 @@ RUN apt-get update
 ENV DEBIAN_FRONTEND noninteractive
 
 # Installing the environment required: xserver, xdm, flux box, roc-filer and ssh
-RUN apt-get install -y xpra rox-filer ssh pwgen
+RUN apt-get install -y xpra rox-filer ssh pwgen xserver-xephyr xdm fluxbox
+
+# Configuring xdm to allow connections from any IP address and ssh to allow X11 Forwarding. 
+RUN sed -i 's/DisplayManager.requestPort/!DisplayManager.requestPort/g' /etc/X11/xdm/xdm-config
+RUN sed -i '/#any host/c\*' /etc/X11/xdm/Xaccess
+RUN ln -s /usr/bin/Xorg /usr/bin/X
+RUN echo X11Forwarding yes >> /etc/ssh/ssh_config
 
 # Upstart and DBus have issues inside docker. We work around in order to install firefox.
 RUN dpkg-divert --local --rename --add /sbin/initctl && ln -s /bin/true /sbin/initctl
