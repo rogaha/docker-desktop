@@ -83,8 +83,14 @@ inet addr:192.168.56.102  Bcast:192.168.56.255  Mask:255.255.255.0 # This is the
 $ ssh docker@192.168.56.102 -p 49153 ./docker-desktop -s 800x600 -d 10 # Here is where we use the external port
 docker@192.168.56.102's password: xxxxxxxxxxxx 
 
--s = Screen Resolution
--d = Session Number
+$ ./docker-desktop -h
+
+-----------------------------------------------------------
+Usage: docker-desktop [-s screen_size] [-d session_number]
+-s : screen resolution (Default = 800x600
+-d : session number (Default = 10)
+-h : help
+-----------------------------------------------------------
 ```
 
 ####Attaching to the session started
