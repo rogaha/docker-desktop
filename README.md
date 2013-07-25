@@ -100,7 +100,7 @@ $ xpra --ssh="ssh -p 49153" attach ssh:docker@192.168.56.102:10 # user@ip_addres
 docker@192.168.56.102's password: xxxxxxxxxxxx 
 
 ```
-If you want to execute programs rootles, you just need to connect to the container via ssh and type: 
+If you want to execute rootless programs, you just need to connect to the container via ssh and type: 
 DISPLAY=:[session_number] [program_name] & 
 
 Eg. DISPLAY=:10 firefox &
