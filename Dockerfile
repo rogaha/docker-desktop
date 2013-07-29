@@ -14,7 +14,7 @@
 # manages the windows and files.
 #
 # Author: Roberto Gandolfo Hashioka
-# Date: 07/18/2013
+# Date: 07/28/2013
 
 
 FROM ubuntu:12.10
@@ -24,6 +24,12 @@ RUN apt-get update
 
 # Set the env variable DEBIAN_FRONTEND to noninteractive
 ENV DEBIAN_FRONTEND noninteractive
+
+# Adding the most update repository for xpra supported heavily by Antoine
+RUN apt-get install -y curl 
+RUN curl http://xpra.org/gpg.asc | apt-key add -
+RUN echo "deb http://xpra.org/ quantal main" > /etc/apt/sources.list.d/xpra.list;
+RUN apt-get update
 
 # Installing the environment required: xserver, xdm, flux box, roc-filer and ssh
 RUN apt-get install -y xpra rox-filer ssh pwgen xserver-xephyr xdm fluxbox
