@@ -49,10 +49,10 @@ Requirements:
 $ docker build -t [username]/docker-desktop git://github.com/rogaha/docker-desktop.git
 ```
 
-###Running the docker image created (-d: detached mode)
+###Running the docker image created (-d: detached mode, -P: expose the port 22 on the host machine)
 
 ```
-$ CONTAINER_ID=$(docker run -d [username]/docker-desktop)
+$ CONTAINER_ID=$(docker run -d -P [username]/docker-desktop)
 ```
 
 ###Getting the password generated during runtime
