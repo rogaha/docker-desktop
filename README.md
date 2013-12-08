@@ -19,7 +19,7 @@ OBS: The client machine needs to have a X11 server installed (Xpra). See the "No
 
 ##Docker Installation
 
-###On Linux:
+###On Ubuntu:
 Docker is available as a Ubuntu PPA (Personal Package Archive), hosted on launchpad which makes installing Docker on Ubuntu very easy.
 
 ```
