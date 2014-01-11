@@ -1,0 +1,35 @@
+#!/bin/bash
+
+#Default locale en_US
+LOCALE="en_US"
+
+
+#Verify if the user defined another locale configuration
+while getopts ":l:h-:" opt; do
+  case $opt in
+    l)
+      echo -e "\n---------------------------------------------------"
+      echo "Setting locale to $OPTARG"
+      echo -e "---------------------------------------------------\n"
+      LOCALE=$OPTARG
+      ;;
+    h)
+      echo -e "\n-----------------------------------------------------------"
+      echo -e "Usage: fixlocale [-l locale_name]"
+      echo -e "-h : help"
+      echo -e "-----------------------------------------------------------\n"
+      exit 1
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      exit 1
+      ;;
+    :)
+      echo "Option -$OPTARG requires an argument." >&2
+      exit 1
+      ;;
+  esac
+done
+
+# Setting the locale according the user's input 
+sudo localedef -v -c -i $LOCALE -f UTF-8 $LOCALE.UTF-8

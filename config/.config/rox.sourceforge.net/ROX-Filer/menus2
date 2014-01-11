@@ -1,0 +1,17 @@
+; rox GtkAccelMap rc-file         -*- scheme -*-
+; this file is an automated accelerator map dump
+;
+; (gtk_accel_path "<icon>/" "")
+; (gtk_accel_path "<icon>/Edit Item" "")
+; (gtk_accel_path "<icon>/ROX-Filer/About ROX-Filer..." "")
+; (gtk_accel_path "<icon>/File/Shift Open" "")
+; (gtk_accel_path "<icon>/Remove Item(s)" "")
+; (gtk_accel_path "<icon>/ROX-Filer/Show Help Files" "<Primary>h")
+; (gtk_accel_path "<icon>/ROX-Filer/Manual" "")
+; (gtk_accel_path "<icon>/Show Location" "")
+; (gtk_accel_path "<icon>/File/Properties" "")
+; (gtk_accel_path "<icon>/ROX-Filer/Options..." "")
+; (gtk_accel_path "<icon>/ROX-Filer/Home Directory" "")
+; (gtk_accel_path "<icon>/ROX-Filer/" "")
+; (gtk_accel_path "<icon>/File/Set Run Action..." "")
+; (gtk_accel_path "<icon>/File/Set Icon..." "")
