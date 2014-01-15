@@ -47,6 +47,12 @@ Requirements:
 
 ```
 $ docker build -t [username]/docker-desktop git://github.com/rogaha/docker-desktop.git
+
+OR
+
+$ git clone https://github.com/rogaha/docker-desktop.git
+$ cd docker-desktop
+$ docker build -t [username]/docker-desktop .
 ```
 
 ###Running the docker image created (-d: detached mode, -P: expose the port 22 on the host machine)
