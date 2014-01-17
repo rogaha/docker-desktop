@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<pinboard>
+  <backdrop style="Tiled">/home/docker/spring-desktop-wallpaper-1920x1200-0911085.jpg</backdrop>
+  <icon x="32" y="320" label="xterm">/usr/bin/xterm</icon>
+  <icon x="32" y="224" label="libreoffice">/usr/bin/libreoffice</icon>
+  <icon x="32" y="128" label="firefox">/usr/bin/firefox</icon>
+  <icon x="32" y="32" label="Home">/home/docker</icon>
+</pinboard>

@@ -15,10 +15,7 @@ adduser docker sudo
 chsh -s /bin/bash docker
 
 # Copy the config files into the docker directory
-cd /src; tar -C /home/docker -xvf config.tar
-
-#Set all the files and subdirectories from /home/docker with docker permissions. 
-chown -R docker:docker /home/docker/*
+cd /src/config/ && sudo -u docker cp -R .[a-z]* [a-z]* /home/docker/
 
 # restarts the xdm service
 /etc/init.d/xdm restart

@@ -1,0 +1,39 @@
+#!/bin/bash
+
+#Default Display 10
+DISPLAY_N=10
+
+
+#Verify if the user defined another screen resolution
+FLAG=0
+while getopts ":d:h-:" opt; do
+  case $opt in
+    d)
+      echo -e "\n---------------------------------------------------"
+      echo "Copying the keyboard mapping from DISPLAY=$OPTARG to DISPLAY=$(( $OPTARG + 1 ))"
+      echo -e "---------------------------------------------------\n"
+      DISPLAY_N=$OPTARG
+      ;;
+    h)
+      echo -e "\n-----------------------------------------------------------"
+      echo -e "Usage: fixkb [-d session_number]"
+      echo -e "-h : help"
+      echo -e "-----------------------------------------------------------\n"
+      exit 1
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      exit 1
+      ;;
+    :)
+      echo "Option -$OPTARG requires an argument." >&2
+      exit 1
+      ;;
+  esac
+done
+
+# Copy the keyboard map from the server to the Xephyr's X11 client
+export DISPLAY=:$DISPLAY_N
+xmodmap -pke > .Xkbmap
+export DISPLAY=:$(( $DISPLAY_N + 1 ))
+xmodmap .Xkbmap
