@@ -31,37 +31,159 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h3>
-<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+        <h1>
+<a name="docker-desktop" class="anchor" href="#docker-desktop"><span class="octicon octicon-link"></span></a>DOCKER-DESKTOP</h1>
 
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
+<h2>
+<a name="description" class="anchor" href="#description"><span class="octicon octicon-link"></span></a>Description</h2>
 
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
+<p>This Dockerfile creates a docker image and once it's executed it creates a container that runs X11 and SSH services.
+The ssh is used to forward X11 and provide you encrypted data communication between the docker container and your local machine.</p>
+
+<p>Xpra + Xephyr allows to display the applications running inside of the container such as Firefox, LibreOffice, xterm, etc. with recovery connection capabilities. Xpra also uses a custom protocol that is self-tuning and relatively latency-insensitive, and thus is usable over worse links than standard X.</p>
+
+<p>The applications can be rootless, so the client machine manages the windows that are displayed.</p>
+
+<p>Fluxbox and ROX-Filer creates a very minimalist way to manages the windows and files. </p>
+
+<p><img src="https://raw.github.com/rogaha/docker-desktop/master/image/docker-desktop.png" alt=""></p>
+
+<p>OBS: The client machine needs to have a X11 server installed (Xpra). See the "Notes" below. </p>
+
+<h2>
+<a name="docker-installation" class="anchor" href="#docker-installation"><span class="octicon octicon-link"></span></a>Docker Installation</h2>
+
+<h3>
+<a name="on-ubuntu" class="anchor" href="#on-ubuntu"><span class="octicon octicon-link"></span></a>On Ubuntu:</h3>
+
+<p>Docker is available as a Ubuntu PPA (Personal Package Archive), hosted on launchpad which makes installing Docker on Ubuntu very easy.</p>
+
+<pre><code>#Add the PPA sources to your apt sources list.
+sudo apt-get install python-software-properties &amp;&amp; sudo add-apt-repository ppa:dotcloud/lxc-docker
+
+# Update your sources
+sudo apt-get update
+
+# Install, you will see another warning that the package cannot be authenticated. Confirm install.
+sudo apt-get install lxc-docker
 </code></pre>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
+<h3>
+<a name="on-windows" class="anchor" href="#on-windows"><span class="octicon octicon-link"></span></a>On Windows:</h3>
+
+<p>Requirements:</p>
+
+<ul>
+<li>Installation Tutorial (<a href="http://docs.docker.io/en/latest/installation/windows/">http://docs.docker.io/en/latest/installation/windows/</a>)</li>
+</ul><h3>
+<a name="on-mac-os-x" class="anchor" href="#on-mac-os-x"><span class="octicon octicon-link"></span></a>On Mac OS X:</h3>
+
+<p>Requirements:</p>
+
+<ul>
+<li>Installation Tutorial (<a href="http://docs.docker.io/en/latest/installation/vagrant/">http://docs.docker.io/en/latest/installation/vagrant/</a>)</li>
+</ul><h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
 
 <h3>
-<a name="designer-templates" class="anchor" href="#designer-templates"><span class="octicon octicon-link"></span></a>Designer Templates</h3>
+<a name="building-the-docker-image" class="anchor" href="#building-the-docker-image"><span class="octicon octicon-link"></span></a>Building the docker image</h3>
 
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
+<pre><code>$ docker build -t [username]/docker-desktop git://github.com/rogaha/docker-desktop.git
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
+OR
 
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
+$ git clone https://github.com/rogaha/docker-desktop.git
+$ cd docker-desktop
+$ docker build -t [username]/docker-desktop .
+</code></pre>
 
 <h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
+<a name="running-the-docker-image-created--d-detached-mode--p-expose-the-port-22-on-the-host-machine" class="anchor" href="#running-the-docker-image-created--d-detached-mode--p-expose-the-port-22-on-the-host-machine"><span class="octicon octicon-link"></span></a>Running the docker image created (-d: detached mode, -P: expose the port 22 on the host machine)</h3>
 
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<pre><code>$ CONTAINER_ID=$(docker run -d -P [username]/docker-desktop)
+</code></pre>
+
+<h3>
+<a name="getting-the-password-generated-during-runtime" class="anchor" href="#getting-the-password-generated-during-runtime"><span class="octicon octicon-link"></span></a>Getting the password generated during runtime</h3>
+
+<pre><code>$ echo $(docker logs $CONTAINER_ID | sed -n 1p)
+User: docker Password: xxxxxxxxxxxx
+# where xxxxxxxxxxxx is the password created by PWGen that contains at least one capital letter and one number
+</code></pre>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<h3>
+<a name="getting-the-containers-external-ssh-port" class="anchor" href="#getting-the-containers-external-ssh-port"><span class="octicon octicon-link"></span></a>Getting the container's external ssh port</h3>
+
+<pre><code>$ docker port $CONTAINER_ID 22
+49153 # This is the external port that forwards to the ssh service running inside of the container as port 22
+</code></pre>
+
+<h3>
+<a name="connecting-to-the-container" class="anchor" href="#connecting-to-the-container"><span class="octicon octicon-link"></span></a>Connecting to the container</h3>
+
+<h4>
+<a name="starting-the-a-new-session" class="anchor" href="#starting-the-a-new-session"><span class="octicon octicon-link"></span></a>Starting the a new session</h4>
+
+<pre><code>$ ifconfig | grep "inet addr:" 
+inet addr:192.168.56.102  Bcast:192.168.56.255  Mask:255.255.255.0 # This is the LAN's IP for this machine
+
+$ ssh docker@192.168.56.102 -p 49153 ./docker-desktop -s 800x600 -d 10 # Here is where we use the external port
+docker@192.168.56.102's password: xxxxxxxxxxxx 
+
+$ ./docker-desktop -h
+
+-----------------------------------------------------------
+Usage: docker-desktop [-s screen_size] [-d session_number]
+-s : screen resolution (Default = 800x600
+-d : session number (Default = 10)
+-h : help
+-----------------------------------------------------------
+</code></pre>
+
+<h4>
+<a name="attaching-to-the-session-started" class="anchor" href="#attaching-to-the-session-started"><span class="octicon octicon-link"></span></a>Attaching to the session started</h4>
+
+<pre><code>$ xpra --ssh="ssh -p 49153" attach ssh:docker@192.168.56.102:10 # user@ip_address:session_number
+docker@192.168.56.102's password: xxxxxxxxxxxx 
+
+</code></pre>
+
+<p>If you want to execute rootless programs, you just need to connect to the container via ssh and type: 
+DISPLAY=:[session_number] [program_name] &amp; </p>
+
+<p>Eg. DISPLAY=:10 firefox &amp;</p>
+
+<h2>
+<a name="notes" class="anchor" href="#notes"><span class="octicon octicon-link"></span></a>Notes</h2>
+
+<h3>
+<a name="on-windows-1" class="anchor" href="#on-windows-1"><span class="octicon octicon-link"></span></a>On Windows:</h3>
+
+<p>Requirements:</p>
+
+<ul>
+<li>Xpra &lt;= 0.9.8 (<a href="https://www.xpra.org/dists/windows/">https://www.xpra.org/dists/windows/</a>)</li>
+<li>Path: C:\Program Files(x86)\Xpra\Xpra_cmd.exe</li>
+</ul><h3>
+<a name="on-os-x" class="anchor" href="#on-os-x"><span class="octicon octicon-link"></span></a>On OS X:</h3>
+
+<p>Requirements:</p>
+
+<ul>
+<li>Xpra Version &lt;= 0.9.8 (<a href="https://www.xpra.org/dists/osx/x86/">https://www.xpra.org/dists/osx/x86/</a>)</li>
+<li>Path: /Applications/Xpra.app/Contents/Helpers/xpra</li>
+</ul><h3>
+<a name="on-linux" class="anchor" href="#on-linux"><span class="octicon octicon-link"></span></a>On Linux:</h3>
+
+<p>Requirements:</p>
+
+<ul>
+<li>Xpra: You can use apt-get to install it -&gt; apt-get install xpra</li>
+<li>Path: /usr/bin/xpra</li>
+</ul>
       </section>
     </div>
 
