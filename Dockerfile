@@ -26,7 +26,7 @@ RUN apt-get update
 ENV DEBIAN_FRONTEND noninteractive
 
 # Installing the environment required: xserver, xdm, flux box, roc-filer and ssh
-RUN apt-get install -y xpra rox-filer ssh pwgen xserver-xephyr xdm fluxbox
+RUN apt-get install -y xpra rox-filer ssh pwgen xserver-xephyr xdm fluxbox sudo
 
 # Configuring xdm to allow connections from any IP address and ssh to allow X11 Forwarding. 
 RUN sed -i 's/DisplayManager.requestPort/!DisplayManager.requestPort/g' /etc/X11/xdm/xdm-config
