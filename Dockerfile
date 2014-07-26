@@ -17,7 +17,7 @@
 # Date: 07/28/2013
 
 
-FROM ubuntu:12.10
+FROM ubuntu:14.04
 MAINTAINER Roberto G. Hashioka "roberto_hashioka@hotmail.com"
 
 RUN apt-get update
