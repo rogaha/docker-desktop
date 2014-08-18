@@ -115,12 +115,12 @@ Eg. DISPLAY=:10 firefox &
 
 ###On Windows:
 Requirements:
-- Xpra <= 0.9.8 (https://www.xpra.org/dists/windows/)
+- Xpra <= 14.0 (https://www.xpra.org/dists/windows/)
 - Path: C:\Program Files(x86)\Xpra\Xpra_cmd.exe
 
 ###On OS X:
 Requirements:
-- Xpra Version <= 0.9.8 (https://www.xpra.org/dists/osx/x86/)
+- Xpra Version <= 14.0 (https://www.xpra.org/dists/osx/x86/)
 - Path: /Applications/Xpra.app/Contents/Helpers/xpra
 
 
