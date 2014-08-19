@@ -86,7 +86,7 @@ $ docker port $CONTAINER_ID 22
 $ ifconfig | grep "inet addr:" 
 inet addr:192.168.56.102  Bcast:192.168.56.255  Mask:255.255.255.0 # This is the LAN's IP for this machine
 
-$ ssh docker@192.168.56.102 -p 49153 ./docker-desktop -s 800x600 -d 10 # Here is where we use the external port
+$ ssh docker@192.168.56.102 -p 49153 "sh -c './docker-desktop -s 800x600 -d 10 > /dev/null 2>&1 &'" # Here is where we use the external port
 docker@192.168.56.102's password: xxxxxxxxxxxx 
 
 $ ./docker-desktop -h
