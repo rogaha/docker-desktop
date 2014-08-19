@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.0 (2014-08-19)
+ + OS: Upgraded from 12.10 to 14.04
+ + Fixed Issue: Added a packet (Xvfb) to make the program work under ubuntu 14.04 (by @clu2)
+ + Fixed Issue: Fix login PAM issue with ssh
+
 ## 0.3.0 (2013-07-18)
  + Funcionality: Allow users to configure the screen resolution 
  + Funcionality: Allow users to create multi-sessions 
