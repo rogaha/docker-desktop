@@ -20,7 +20,8 @@
 FROM ubuntu:14.04
 MAINTAINER Roberto G. Hashioka "roberto_hashioka@hotmail.com"
 
-RUN apt-get update
+RUN apt-get update -y
+RUN apt-get upgrade -y
 
 # Set the env variable DEBIAN_FRONTEND to noninteractive
 ENV DEBIAN_FRONTEND noninteractive
