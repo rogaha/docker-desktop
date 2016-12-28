@@ -46,7 +46,7 @@ Requirements:
 ###Building the docker image
 
 ```
-$ docker build -t [username]/docker-desktop git://github.com/rogaha/docker-desktop.git
+$ docker build -t rogaha/docker-desktop git://github.com/rogaha/docker-desktop.git
 
 OR
 
