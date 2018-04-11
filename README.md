@@ -10,7 +10,7 @@ Xpra + Xephyr allows to display the applications running inside of the container
 
 The applications can be rootless, so the client machine manages the windows that are displayed.
 
-Fluxbox and ROX-Filer creates a very minimalist way to manages the windows and files. 
+Fluxbox and ROX-Filer creates a very minimalist way to manage windows and files. 
 
 
 ![Docker L](image/docker-desktop.png "Docker-Desktop")
