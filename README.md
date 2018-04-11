@@ -17,9 +17,9 @@ Fluxbox and ROX-Filer creates a very minimalist way to manage windows and files.
 
 OBS: The client machine needs to have a X11 server installed (Xpra). See the "Notes" below. 
 
-##Docker Installation
+## Docker Installation
 
-###On Ubuntu:
+### On Ubuntu:
 Docker is available as a Ubuntu PPA (Personal Package Archive), hosted on launchpad which makes installing Docker on Ubuntu very easy.
 
 ```
