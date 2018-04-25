@@ -23,7 +23,7 @@ OBS: The client machine needs to have a X11 server installed (Xpra). See the "No
 Docker is available as a Ubuntu PPA (Personal Package Archive), hosted on launchpad which makes installing Docker on Ubuntu very easy.
 
 ```
-#Add the PPA sources to your apt sources list.
+# Add the PPA sources to your apt sources list.
 sudo apt-get install python-software-properties && sudo add-apt-repository ppa:dotcloud/lxc-docker
  
 # Update your sources
