@@ -32,7 +32,6 @@ RUN apt-get install -y xpra rox-filer openssh-server pwgen xserver-xephyr xdm fl
 # Configuring xdm to allow connections from any IP address and ssh to allow X11 Forwarding. 
 RUN sed -i 's/DisplayManager.requestPort/!DisplayManager.requestPort/g' /etc/X11/xdm/xdm-config
 RUN sed -i '/#any host/c\*' /etc/X11/xdm/Xaccess
-RUN ln -s /usr/bin/Xorg /usr/bin/X
 RUN echo X11Forwarding yes >> /etc/ssh/ssh_config
 
 # Fix PAM login issue with sshd
