@@ -17,7 +17,7 @@
 # Date: 07/28/2013
 
 
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 MAINTAINER Roberto G. Hashioka "roberto_hashioka@hotmail.com"
 
 RUN apt-get update -y
@@ -27,12 +27,11 @@ RUN apt-get upgrade -y
 ENV DEBIAN_FRONTEND noninteractive
 
 # Installing the environment required: xserver, xdm, flux box, roc-filer and ssh
-RUN apt-get install -y xpra rox-filer openssh-server pwgen xserver-xephyr xdm fluxbox xvfb sudo
+RUN apt-get install -y xpra rox-filer openssh-server pwgen xserver-xephyr xdm fluxbox xvfb locales sudo
 
 # Configuring xdm to allow connections from any IP address and ssh to allow X11 Forwarding. 
 RUN sed -i 's/DisplayManager.requestPort/!DisplayManager.requestPort/g' /etc/X11/xdm/xdm-config
 RUN sed -i '/#any host/c\*' /etc/X11/xdm/Xaccess
-RUN ln -s /usr/bin/Xorg /usr/bin/X
 RUN echo X11Forwarding yes >> /etc/ssh/ssh_config
 
 # Fix PAM login issue with sshd
